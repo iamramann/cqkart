@@ -1,0 +1,42 @@
+@import url("/css/all.css");
+@import url("/css/components/footer.css");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+.cs-navbar {
+  background: #4267b2;
+}
+
+* {
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+  font-family: "Lato", sans-serif;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  resize: none;
+}
+
+input[type="search"],
+textarea,
+select,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  outline: none;
+  box-shadow: none !important;
+  border: 1px solid var(--border-light-1) !important;
+}
+
+@media (max-width: 899px) {
+  .w-50 {
+    min-width: 90%;
+  }
+}
+@media (min-width: 900px) and (max-width: 1100px) {
+  .w-50 {
+    min-width: 90%;
+  }
+}

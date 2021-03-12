@@ -1,0 +1,42 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "chalk": "^4.1.0",
+    "cloudinary": "^1.25.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "crypto-random-string": "^3.3.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-minify": "^1.0.0",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.10.0",
+    "instamojo-nodejs": "0.0.5",
+    "method-override": "^3.0.0",
+    "minify": "^7.0.0",
+    "mongoose": "^5.11.18",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "author": {
+    "name": "Raman Sharma",
+    "email": "kukreti.rs@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {}
+}

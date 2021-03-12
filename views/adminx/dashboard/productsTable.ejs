@@ -1,0 +1,90 @@
+          <div class="d-flex justify-content-between">
+            <h2 class="text-capitalize text-muted">products</h2>
+            <div class="dropdown">
+              <button class="btn btn-transparent border border-light border-2 dropdown-toggle filter" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="text-capitalize">
+                  filter product category
+                </span> 
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="allCategories">
+                <li class="m-2 text-capitalize text-muted">
+                  <a href="/dashboard/All" style="text-decoration: none;">All Products</a>
+                </li>
+                <%#allCategories.forEach(function(val1,val2,set) {%>
+                  <!-- <li class="m-2 text-capitalize text-muted">
+                    <a href="/dashboard/<%#=val1%>" style="text-decoration: none;"><%#=val1%></a></li> -->
+                <%#}) %> 
+              </ul>
+            </div>
+
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm my-table" id="my-table">
+              <thead>
+                <tr class="product-tbl">
+                  <th>no.</th>
+                  <th>name</th>
+                  <th>price</th>
+                  <th>discount</th>
+                  <th>quantity</th>
+                  <th>product id</th>
+                  <th>image</th>
+                  <!-- <th>description</th> -->
+                  <th>category</th>
+                  <th>action</th>
+                </tr>
+              </thead>
+          <%# create product list start%>
+              <tbody>
+                <%# if-else start %> 
+                <% if (newList.length) { %>
+                  <%# for-each start %> 
+                <%newList.forEach((product,index)=> {%> 
+                <%let { price,title,productId,image,description,category,quantity,discount,_id} = product %>
+                <script>
+                  // console.log(`<%#-id%>`);
+                </script>
+                <% discount=discount!==undefined?discount:"NA" %> 
+                <tr class="disable-row-x">
+                  <td class="fw-bold" aria-readonly="true"><%=index+1%></td>
+                  <td contenteditable="false" class="getValue my-name" data-name="title" style="width:100px;word-wrap: break-word;"><%=title%></td>
+                  <td contenteditable="false"  class="getValue my-price" data-name="price"><%=price%></td>
+                  <td contenteditable="false"  class="getValue my-discount" data-name="discount"><%=discount%></td>
+                  <td contenteditable="false"  class="getValue my-quantity" data-name="quantity"><%=quantity===undefined?"N/A":quantity%></td>
+                  <!-- <td aria-readonly="true"><%#=productId%></td> -->
+                  <td aria-readonly="true"><%=_id%></td>
+                  <td class="mongoId" hidden><%-_id%></td>
+                  <td><a href="<%-image%>" target="_blank">view</a></td>
+                  <!-- <td><%#=description===undefined?"N/A":description.substr(0,30)+"..."%></td>  -->
+                  <td class="text-capitalize"><%=category===undefined ? "n/a" : category%></td>
+                  <td>
+                    <button class="btn-outline-primary editProduct"  title="edit" id="editProduct">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <!-- <button class="btn-success d-none updateProduct" data-confirm="Are you sure to update product"      data-product-id="<%#-_id%>" data-url="/updateProduct" title="update" id="updateProduct">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </button> -->
+                    <button class="btn-success d-none updateProduct" data-confirm="Are you sure to update product"      data-product-id="<%-_id%>" data-url="/updateProductDetails/<%-_id%>" title="update" id="updateProduct">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </button> 
+                    <button class="btn-danger d-none deleteProduct" data-confirm="Are you sure to delete this Product"
+                    data-url="/deleteProduct/<%-_id%>" data-product-id="<%-_id%>" title="delete" id="deleteProduct">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn-secondary d-none cancel" title="cancel" id="cancel">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                </tr>
+                <% })%>
+                  <%# for-each end %> 
+                  <% } else { %>  
+                  <tr>
+                    <td colspan="7" class="text-muted h3 text-center text-capitalize"><%=message%></td>
+                  </tr>          
+                <% } %> 
+                <%# if-else end %> 
+              </tbody>
+          <%# create product list end%>
+            </table>
+          </div>

@@ -1,0 +1,81 @@
+/* 
+   * @author - RAMAN SHARMA
+   * @email: kukreti.rs@gmail.com
+   * @linkedin - https://www.linkedin.com/in/rashx358/
+   * @Modified - 2021-02-22 14:18:58
+*/
+@import url("/css/users/changePwd.css");
+
+input,
+select {
+  outline: none;
+  box-shadow: none !important;
+  border: 1px solid var(--border-light-1) !important;
+}
+
+#form label,
+input {
+  margin: 5px auto;
+}
+
+#address label {
+  margin: 5px auto;
+}
+
+#form label {
+  text-transform: capitalize;
+}
+
+#form .col-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: solid 1px red; */
+}
+
+.display-none {
+  display: none;
+}
+
+#form input {
+  padding: 8px;
+}
+
+.opacity-5 {
+  opacity: 0.8;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+#add-row:nth-child(even) {
+  background-color: #ccc;
+}
+
+#form textarea {
+  resize: none;
+  padding: 5px;
+}
+
+#form input:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.fs-9 {
+  font-size: 0.9rem;
+}
+.fs-1-5 {
+  font-size: 1.5rem;
+}
+.fs-1-1 {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 512px) {
+  .w-75 {
+    min-width: 95%;
+  }
+}

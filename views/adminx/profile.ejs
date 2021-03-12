@@ -1,0 +1,112 @@
+<%# @response(object) - holds the current user details %> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <%# font awesome %>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/admin/profile.css">
+  </head>
+  <body>
+    <% const { _id, designation, username, password, name, dob, mobile, email, cqkartid, avatar } = response %>
+    <%-include("../partials/admin/header.ejs") %> 
+    <div class="container border my-5 w-75">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-end p-3" >
+          <a href="/logout" class="btn btn-outline-dark">Logout</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mt-2 d-flex flex-column align-items-center">
+          <img src="<%-avatar %>" alt="admin avatar" class="avatar" id="avatar">
+          <figcaption class="caption text-muted" id="figCaption">Click to update</figcaption>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <%# fallback url = /update %> 
+            <form action="/updateAdmin/<%-_id%>?_method=PATCH" method="post" class="p-lg-3 p-md-2 p-sm-2" id="admin-form" enctype="multipart/form-data">
+              <div class="mb-2">
+                <label for="name" class="form-label">name</label>
+                <input type="text" class="form-control text-uppercase" name="name" value="<%-name%>" id="name">
+              </div>
+              <div class="mb-2">
+                <label for="name" class="form-label">Chnage Avatar</label>
+                    <input class="form-control" type="file" name="avatar" id="fileUpload" accept="image/x-png,image/jpg,image/jpeg">
+              </div>
+              <div class="mb-2">
+                <label for="email" class="form-label">email</label>
+                <input type="email" name="email" class="form-control" value="<%-email%>" id="email">
+              </div>
+              <div class="mb-2">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label for="designation" class="form-label">designation</label>
+                    <input type="text"  class="form-control" value="<%-designation%>" id="designation" readonly>
+                  </div>
+                  <div class="col-lg-4">
+                    <label for="username" class="form-label">username</label>
+                    <input type="text"  class="form-control" value="<%-username%>" id="username" readonly>
+                  </div>
+                  <div class="col-lg-4">
+                    <label for="documentId" class="form-label">document id</label>
+                    <input type="text" name="id" class="form-control" value="<%-_id%>" id="documentId" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-2">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label for="dob" class="form-label">date of birth</label>
+                    <input type="text" name="dob" class="form-control" value="<%-dob%>" id="dob">
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="mobile" class="form-label">mobile</label>
+                    <input type="text" class="form-control" value="<%-mobile%>" id="mobile" name="mobile">
+                  </div>
+                </div>
+              </div>
+                
+              <div class="mb-2">
+                <label for="cqkartid" class="form-label">cqkartid</label>
+                <input type="text" class="form-control" value="<%-cqkartid%>" id="cqkartid" readonly>
+              </div>
+              <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    <%-include("../partials/footer.ejs") %> 
+
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"
+  ></script>
+  <script src="/script/adminx/profile.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"
+  ></script>
+</html>

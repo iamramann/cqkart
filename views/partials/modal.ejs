@@ -1,0 +1,328 @@
+<%#signup modal end%> <%# TODO: ADD THESE SCRIPTS TO PARENT FILE
+<script type="text/javascript" src="/script/userx/modal.js"></script>
+<script type="text/javascript" src="/script/userx/loginForm.js"></script>
+<script type="text/javascript" src="/script/userx/signupForm.js"></script>
+%> <%#signin modal btn start%> <%# launch btn %>
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  style="display: none"
+  id="model-btn-signin"
+  data-bs-target="#loginModal"
+></button>
+<div class="modal-dialog modal-dialog-centered">
+  <%# Modal start %>
+  <div
+    class="modal fade"
+    id="loginModal"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary-cs text-white">
+          <h5 class="modal-title text-center" id="exampleModalLongTitle">
+            CQKart
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            id="login-cross"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p class="h3 text-center text-secondary text-capitalize m-3">
+            Login Form
+          </p>
+          <form
+            class="p-3 my-3 bg-light"
+            method="POST"
+            action="/user/login"
+            id="login-form"
+          >
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                ><i class="fa fa-user icon-style" aria-hidden="true"></i>
+              </span>
+              <%#
+              <!--todo: make username/email field autofocus when model apperars-->
+              %>
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                value=""
+                id="username"
+                placeholder="Enter Your email*"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                autofocus
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">
+                <i class="fa fa-lock icon-style" aria-hidden="true"></i>
+              </span>
+              <input
+                type="password"
+                id="password2"
+                value=""
+                name="password"
+                class="form-control password-parent"
+                placeholder="Enter Your Password*"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                required
+              />
+              <i
+                class="fa fa-eye cursor-pointer"
+                id="faEye2"
+                aria-hidden="true"
+              ></i>
+            </div>
+            <div class="d-grid gap-2 my-3">
+              <span style="display: none" id="spinner-1">
+                <%- include("../partials/spinner.ejs") %>
+              </span>
+              <input
+                type="submit"
+                value="SignIn"
+                id="submitBtn"
+                class="btn btn-primary"
+                name="signin"
+              />
+            </div>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="link-danger mx-2">Forget Password!!</a>
+              <a href="#" class="link-secondary mx-2" id="new-user-click">
+                New user click here!!
+              </a>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer bg-primary-cs">
+          <button
+            type="button"
+            class="btn btn-light"
+            data-bs-dismiss="modal"
+            id="close-login-modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%# Modal end %>
+</div>
+<%#signin modal btn end%> <%#signup modal btn start%>
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  style="display: none"
+  id="model-btn-signup"
+  data-bs-target="#signupModal"
+></button>
+<%#signup modal btn end%> <%#signup modal start%>
+<div class="modal-dialog modal-dialog-centered">
+  <%# Modal start %>
+  <div
+    class="modal fade"
+    id="signupModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary-cs text-white">
+          <h5 class="modal-title text-center" id="exampleModalLongTitle">
+            CQKart
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            id="signup-cross"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p class="h3 text-center text-secondary text-capitalize m-3">
+            SignUp Form
+          </p>
+          <form
+            class="p-3 my-3 bg-light"
+            method="POST"
+            action="/user/newUser"
+            id="signup-form"
+          >
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                ><i class="fa fa-user icon-style" aria-hidden="true"></i>
+              </span>
+              <%#
+              <!--todo: make name field autofocus when model apperars-->
+              %>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                placeholder="Enter Your Name*"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                required
+              />
+            </div>
+            <p class="display-none msg-icon alert-cs" id="email-msg"></p>
+            <div class="input-group mb-3" style="position: relative">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                ><i
+                  class="fa fa-envelope icon-style"
+                  id="email-icon"
+                  aria-hidden="true"
+                ></i>
+              </span>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+                placeholder="Enter Your Email*"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                autocomplete="off"
+                required
+                pattern="^[^ ]+@[^ ]+\.[a-zA-Z]{2,3}$"
+              />
+              <i
+                class="fa fa-check display-none"
+                id="tick-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <p class="display-none msg-icon alert-cs" id="phone-msg"></p>
+            <div class="input-group mb-3" style="position: relative">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                ><i
+                  class="fa fa-phone icon-style"
+                  id="phone-icon"
+                  aria-hidden="true"
+                ></i>
+              </span>
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                class="form-control"
+                placeholder="Enter Your Mobile Number*"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                required
+                minlength="10"
+                maxlength="10"
+                pattern="[6,7,8,9][0-9]{9,10}$"
+              />
+              <i
+                class="fa fa-check display-none"
+                id="tick-icon-2"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">
+                <i
+                  class="fa fa-lock icon-style"
+                  id="passIcon"
+                  aria-hidden="true"
+                ></i>
+              </span>
+              <input
+                type="password"
+                name="password"
+                id="password1"
+                class="form-control password-parent"
+                placeholder="Enter Your Password*"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                required
+              />
+              <i
+                class="fa fa-eye cursor-pointer"
+                id="faEye"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <div class="input-group mb-3" style="position: relative">
+              <span class="input-group-text" id="inputGroup-sizing-default">
+                <i
+                  class="fa fa-lock icon-style"
+                  id="cpass"
+                  aria-hidden="true"
+                ></i>
+              </span>
+              <input
+                type="password"
+                id="cpassword"
+                name="cpassword"
+                class="form-control"
+                placeholder="Confirm Password*"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+                required
+              />
+              <i
+                class="fa fa-check display-none"
+                id="tick-icon-3"
+                aria-hidden="true"
+              ></i>
+            </div>
+            <div class="d-grid gap-2">
+              <input
+                class="btn btn-primary"
+                type="submit"
+                id="signup"
+                value="signup"
+              />
+              <span style="display: none" id="spinner-2">
+                <%- include("../partials/spinner.ejs") %>
+              </span>
+            </div>
+            <div class="d-flex justify-content-between my-3">
+              <a href="#" class="link-secondary mx-2" id="already-a-user">
+                Already a user click here!!
+              </a>
+              <a href="#" class="link-danger mx-2">Need help</a>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer bg-primary-cs">
+          <button
+            type="button"
+            class="btn btn-light"
+            data-bs-dismiss="modal"
+            id="close-signup-modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%# Modal end%>
+</div>

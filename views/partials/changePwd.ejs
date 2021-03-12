@@ -1,0 +1,100 @@
+<%# Modified on 2021-02-19 18:19:27 %> 
+<%# Button trigger modal %>
+<button
+  style="display: none"
+  id="pwdModal"
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Launch demo modal
+</button>
+
+<%# Modal %> 
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <p class="mb-0 m-3 text-start display-none" id="changeMsg">
+
+  
+      </p>
+      <div class="modal-body">
+        <p class="error-msg display-none mb-0">old password</p>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            ><i class="fa fa-unlock"></i
+          ></span>
+          <input
+            id="oldpwd"
+            type="password"
+            name="opassword"
+            placeholder="Enter Old Password"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+        </div>
+
+        <p class="error-msg display-none mb-0">new password</p>
+        <div class="input-group mb-3" style="position: relative;">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            ><i class="fa fa-key"></i
+          ></span>
+          <input
+            id="newPwd"
+            type="password"
+            name="npassword"
+            placeholder="Enter New Password"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+          <i
+                class="fa fa-check display-none tick-icon"
+                id="changePwdTick"
+                aria-hidden="true"
+              ></i>
+        </div>
+
+        <p class="error-msg display-none mb-0">confirm password</p>
+        <div class="input-group mb-3" >
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            ><i class="fa fa-lock"></i
+          ></span>
+          <input
+            id="confirmNewPwd"
+            type="password"
+            name="cpassword"
+            placeholder="Confirm New Password"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" id="updatePwd" class="btn btn-primary">Update Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <script src="/script/components/pwdModal.js"></script> -->

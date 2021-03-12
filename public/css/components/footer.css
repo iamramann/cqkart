@@ -1,0 +1,31 @@
+.ul-1 li a {
+  font-size: 24px;
+}
+
+.ul-1 {
+  list-style: none;
+  padding: 0;
+}
+
+.ul-1 li {
+  display: inline-block;
+  /* margin: 5px; */
+}
+
+ul.ul-2 {
+  padding: 0;
+  list-style: none;
+  margin: 15px auto;
+}
+
+.ul-2 li {
+  margin: 5px auto;
+  padding: 0px;
+}
+.ul-2 li a {
+  color: #fff;
+  text-decoration: none;
+}
+.cs-navbar {
+  background: var(--dark-color-2);
+}

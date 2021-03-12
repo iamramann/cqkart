@@ -1,0 +1,346 @@
+<%# 
+  <!-- 
+    * @author - RAMAN SHARMA
+    * @email: kukreti.rs@gmail.com 
+    * @linkedin - https://www.linkedin.com/in/rashx358/
+    * @Modified - 2021-02-22 16:07:40
+  -->
+%> 
+
+<%# data available 
+  <!--
+    * @display <var> - to control visibility of sidebar menu items
+    * @user <object> - hold all the details of the user
+  -->
+%> 
+
+<%# logic section %> 
+<% let { name, email, userId, avatar, phone, status, cart, date, address} = user %>  
+
+<% 
+let newUser = {
+    name:name.toUpperCase(),
+    email,
+    userId,
+    phone,
+    status:status.toUpperCase(),
+    joined:`${months[date.getMonth()]} ${date.getFullYear()}`,
+    address: address ?? "No Address available",
+  }
+%> 
+<%# view section %> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<%# bootstrap %>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous"
+  />
+
+  <%# font awesome %> 
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous"
+  />
+  <%# my css %> 
+  <link rel="stylesheet" href="/css/users/profile.css">
+</head>
+<body class="bg-light">
+  <%- include("../partials/header.ejs") %> 
+  <%# container start %> 
+  <div class="container border w-75 my-3" id="profile-container" style="background-color: white;">
+    <%# row start %> 
+    <div class="row">
+      <%# left column %> 
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="row py-2 d-flex">
+          <div class="col-2">
+            <img src="/images/def.svg" width="100%" height="80px" alt="image icon">
+          </div>
+          <div class="col-10  d-flex flex-column justify-content-center p-2">
+            <p class="mb-0" style="font-size: 14px;">Hello</p>
+            <p class="text-capitalize mb-0 fw-bold"><%=name%> </p>
+          </div>
+        </div>
+        <%# 
+           * @author - RAMAN SHARMA
+           * @email: kukreti.rs@gmail.com
+           * @linkedin - https://www.linkedin.com/in/rashx358/
+        %> 
+        <%# inner-row-start %> 
+        <div class="row my-3">
+          <%# col-1 start %> 
+            <div class="col-12 py-3 d-flex flex-row justify-content-between border-bottom">
+              <div class="d-flex p-2">
+                <img src="/images/orders.svg" width="20px" height="20px" alt="image icon">
+                <p class="text-uppercase fw-bold mx-4 mb-0 cursor-pointer d-flex align-items-center fs-6">my orders</p>
+              </div>
+              <div class="d-flex justify-content-center align-items-center cursor-pointer">
+                <i class="fa fa-arrow-right px-3"></i>
+              </div>
+            </div>
+          <%# col-1 end %> 
+
+          <%# col-2 start %> 
+            <div class="col-12 d-flex py-3 flex-column justify-content-between border-bottom">
+              <div class="d-flex p-2">
+                <img src="/images/user.svg" width="20px" height="20px" alt="image icon">
+                <p class="text-uppercase fs-6 fw-bold mx-4 mb-0 cursor-pointer d-flex align-items-center">account settings</p>
+              </div>
+
+              <ul style="list-style-type: none;" class="py-1">
+                <li class="text-capitalize py-2 cursor-pointer"><a href="#profile" class="text-decoration-none fs-9 text-muted">profile information</a> </li>
+                <li class="text-capitalize py-2 cursor-pointer"> <a class="text-decoration-none text-muted fs-9" href="#myaddress">manage addresses</a> </li>
+                <li  class="py-2 cursor-pointer">
+                  <a href="#pancard" class="text-decoration-none text-muted fs-9">
+                    PAN Card Information
+                  </a>
+                </li>
+              </ul>
+            </div>
+          <%# col-2 end %> 
+
+          <%# col-3 start %> 
+            <div class="col-12 d-flex py-3 flex-column justify-content-between border-bottom">
+              <div class="d-flex p-2">
+                <img src="/images/pym.svg" width="20px" height="20px" alt="image icon">
+                <p class="text-uppercase fs-6 fw-bold mx-4 mb-0 cursor-pointer d-flex align-items-center">payments</p>
+              </div>
+              <ul style="list-style-type: none;" class="py-1">
+                <li class="text-capitalize  py-2 cursor-pointer fs-9 text-muted">gift cards</li>
+                <li class="text-capitalize py-2 cursor-pointer fs-9 text-muted">saved upi</li>
+                <li  class="py-2 cursor-pointer text-capitalize fs-9 text-muted">saved cards</li>
+              </ul>
+            </div>
+          <%# col-3 end %> 
+
+          <%# col-4 start %> 
+            <div class="col-12 d-flex py-3 flex-column justify-content-between border-bottom">
+              <div class="d-flex p-2">
+                <i class="fa fa-link text-primary fs-4"></i>
+                <p class="text-uppercase fs-6 fw-bold mx-4 mb-0 cursor-pointer d-flex align-items-center">External links</p>
+              </div>
+              <ul style="list-style-type: none;" class="py-1">
+                <li class="text-capitalize  py-2 cursor-pointer"><a href="#" class="text-decoration-none fs-9">Sell with us</a></li>
+                <li class="text-capitalize py-2 cursor-pointer"  ><a href="#" class="text-decoration-none fs-9">Become an affiliate</a></li>
+                <li  class="py-2 cursor-pointer text-capitalize"><a href="#" class="text-decoration-none fs-9">loyal customer program</a></li>
+              </ul>
+            </div>
+          <%# col-4 end %> 
+      
+          <%# col-5 start %> 
+            <div class="col-12 d-flex flex-column justify-content-between border-bottom">
+              <div class="d-flex p-2">
+                <i class="fa fa-power-off fs-5 text-danger" aria-hidden="true"></i>
+                <a href="/user/logout" class="text-uppercase fs-6  mx-4 mb-0 cursor-pointer d-flex text-danger text-decoration-none fs-9">LogOut</a>
+              </div>
+            </div>
+          <%# col-5 end %> 
+        </div>
+        <%# inner-row-1-end %> 
+      </div>
+      <%# left column end %> 
+
+      <%# right column%>  
+      <div class="col-sm-12 col-md-6 col-lg-8 border-start">
+        <%# inner-row-1 start %> 
+          <div class="row m-2" id="profile" >
+            <h1 class="text-muted text-uppercase my-3 p-3 h3 bg-light fs-1-5">Profile Information</h1>
+
+            <%# form start %> 
+            <form method="POST" action="/user/update/<%-userId %>" id="form">
+              <%# loop starts %> 
+              <% for(let key in newUser) { %> 
+                <div class="row border-bottom my-3">
+                  <!-- <script> console.log(`<%#-key%>`); </script> -->
+                  <div class="col-2">
+                    <label for="<%=key%>" class="fs-6"><%= key %> </label>
+                  </div>
+                  <div class="col-10">
+                    <% if(key==="address") {%> 
+                    <%#<!-- todo: handle adress textbox -->%>
+                        <textarea placeholder="<%=newUser[key]%>" id="" class="w-100 fs-9" rows="3" disabled>
+                          <%#=newUser[key][0].locality newUser[key][0].district%>
+                            
+                        </textarea>
+                    <% } else { %> 
+                      <%# <!-- todo: capitalize name value when user types--> %> 
+                    <input 
+                      type="text" 
+                      class="w-100 bg-light border-0 details fs-9" 
+                      name=<%-key %>  
+                      id="<%=key%>" 
+                      value="<%= newUser[key] %>"
+                      <% if(key==="status" || key==="userId" || key=="joined") {%> 
+                        <%= "disabled" %> 
+                      <% } %> 
+                      >
+                  <% } %> 
+                  </div>
+                </div>
+              <% } %> 
+              <%# loop ends %> 
+              <%# submit btn %> 
+                <div class="row mx-2">
+                <input class="btn btn-outline-primary fs-9 text-uppercase" type="submit" value="update" name="submit" id="submit"> 
+                  <button class="btn btn-success d-none" type="button" disabled id="add-loader-x" >
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      <span class="text-capitalize">please wait...</span>
+                </button>  
+              </div>
+                <div class="row mx-2 d-none" id="new-add-row-x">
+                <div class="alert mb-0 p-0 p-2" id="new-add-alert-x" role="alert">
+                  <span class="fs-9 text-capitalize" id="new-add-msg-x"></span>    
+                  </div>
+              </div>
+            </form>
+            <%# form ends %> 
+          </div>
+        <%# inner-row-1 end %> 
+
+        <%# address row start %> 
+        <div class="row m-2" id="myaddress">
+          <div class="row">
+            <h1 class="text-muted text-uppercase my-3 p-3 h3 bg-light fs-1-5">Your saved addresses</h1>
+          </div>
+          <% if (address.length) { %>
+            <div class="row">
+              <div class="col-12">
+                <% address.forEach((x,i)=>{ %>
+                  <% let {state, locality, pincode, district} = x %> 
+                    <div class="row d-flex fs-9" id="add-row">
+                    <p class="mb-0 p-3"> <span class="fw-bold"><%= i+1 +"." %></span>  <%= locality +", "+ district +", "+ state +", "+ pincode  %> </p>
+                    </div> 
+                <% }) %> 
+              </div>
+            </div>
+          <% } else { %>
+            <p class="text-muted">No Address to display...</p>
+          <% } %> 
+        </div>
+        <%# address row end %> 
+
+        <%# inner-row-2 start %> 
+          <div class="row m-2" id="myaddress">
+            <h1 class="text-muted text-uppercase my-3 p-3 h3 bg-light fs-1-5">Manage Addresses</h1>
+            <%# form start %> 
+            <form method="POST" action="/user/new-address/<%-userId%>" id="address">
+              <div class="row m-0 my-2">
+                <div class="col-12">
+                  <label for="state" class="text-capitalize fw-bold">select state</label>
+                </div>
+                <div class="col-12">
+                  <select class="form-select fs-9" aria-label="Default select example" id="states" name="state">
+                    <option selected disabled>Select State</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row m-0 my-2">
+                <div class="col-12">
+                  <label for="state" class="text-capitalize fw-bold">select district</label>
+                </div>
+                <div class="col-12">
+                  <select class="form-select fs-9" aria-label="Default select example" id="district" name="district">
+                    <option selected disabled>Select District</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row m-0 my-2">
+                <div class="col-12">
+                  <label for="locality" class="text-capitalize fw-bold">Locality</label>
+                </div>
+                <div class="col-12">
+                  <input type="text" placeholder="eg: house no. 10, colony/flat/building" class="w-100 p-2 fs-9 opacity-5 details" name="locality" id="locality">
+                </div>
+              </div>
+
+              <div class="row m-0 my-2">
+                <div class="col-12">
+                  <label for="pincode" class="text-capitalize fw-bold">pincode</label>
+                </div>
+                <div class="col-12">
+                  <input type="text"  placeholder="Enter Pincode" class="w-100 p-2 opacity-5 details fs-9" name="pincode" id="pincode">
+                </div>
+              </div>
+
+          <%# address btn %> 
+              <div class="row mx-2">
+                <!-- <div class="col-12"> -->
+                  <input class="btn btn-outline-success fs-9 text-uppercase" type="submit" value="add address" name="submit" id="add-address-btn"> 
+                  <button class="btn btn-success d-none" type="button" disabled id="add-loader" >
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      <span class="">Adding Address</span>
+                </button>  
+                <!-- </div> -->
+              </div>
+
+              <div class="row mx-2 d-none" id="new-add-row">
+                <div class="alert mb-0 p-0 p-2" id="new-add-alert" role="alert">
+                  <span class="fs-9 text-capitalize" id="new-add-msg"></span>    
+                    </div>
+              </div>
+            </form>
+
+            <%# form ends %> 
+          </div>  
+        <%# inner-row-2 end %> 
+      </div>
+      <%# right column end %> 
+    </div>
+    <%# row end %>
+
+    <%# row-2 start%> 
+      <div class="row border-top my-3">
+        <div class="col-12 p-2">
+              <a href="/delete/user/<%=userId%>" class="text-decoration-underline text-danger"
+                id="delete-user"
+                data-confirm="This action can't be undone">
+                Deactivate Account
+              </a>
+        </div>
+      </div>
+    <%# row-2 end %> 
+
+  </div>
+  <%# container end %> 
+  <%- include("../partials/changePwd.ejs") %> 
+  <%- include("../partials/footer.ejs") %> 
+
+<%# jquery cdn%>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"
+  ></script>
+<%# 
+   * @author - RAMAN SHARMA
+   * @email: kukreti.rs@gmail.com
+   * @linkedin - https://www.linkedin.com/in/rashx358/
+%> 
+  <script type="module" src="/script/users/profile.js"></script>
+
+<%# bootstrap js%>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+    integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+    integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+    crossorigin="anonymous"
+  ></script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<header class="navbar navbar-dark sticky-top header flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-5" href="/user">
+      <i class="fa fa-shopping-bag px-1" aria-hidden="true"></i>
+      <%= brandName %> 
+    </a>
+  <input
+    class="form-control form-control-dark w-70"
+    type="search"
+    placeholder="Search Products...."
+    aria-label="Search"
+    id="search-bar"
+  />
+  <div class="toggle navbar-nav" id="bars"></div>
+</header>
+<div class="navigation shadow" id="abc" style="z-index: 1">
+  <ul class="nopadding">
+    <% if(!display) { %>
+    <li>
+      <a href="#" id="model-open-signin">
+        <span class="icon"
+          ><i class="fa fa-sign-in" aria-hidden="true"></i>
+        </span>
+        <span class="title">Sign In</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" id="model-open-signup">
+        <span class="icon"><i class="fa fa-user" aria-hidden="true"></i> </span>
+        <span class="title">Sign Up</span>
+      </a>
+    </li>
+    <li>
+      <%#<!-- ! disbled-->%>
+      <a href="#" style="opacity: 0.5; pointer-events: none;" id="model-open-signup">
+        <span class="icon"
+          ><i class="fa fa-user-plus" aria-hidden="true"></i
+        ></span>
+        <span class="title">Become a Seller</span>
+      </a>
+    </li>
+    <% } else { %>
+        <% let {name,userId} = user %>        
+    <li>
+      <a href="/user/BuySection"
+        ><span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+        <span class="title">Home</span>
+      </a>
+    </li>
+
+    <li>
+      <%# change user --to--> userId %> 
+      <a href="/user/profile/?userId=<%=userId%>" title="view profile">
+        <span class="icon"><i class="fa fa-user" aria-hidden="true"></i> </span>
+        <span class="title text-capitalize"> <%=name%> </span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="/user/userCart">
+        <span class="icon">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </span>
+        <span class="title">Cart</span>
+      </a>
+    </li>
+
+    <%# <!--! hidden  --> %> 
+    <li style="display: none;">
+      <a href="#">
+        <span class="icon">
+          <i class="fa fa-comment" aria-hidden="true"></i>
+        </span>
+        <span class="title">Notification</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/user/settings">
+        <span class="icon">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </span>
+        <span class="title">Setting</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" id="changePassword">
+        <span class="icon">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+        </span>
+        <span class="title">Password</span>
+      </a>
+    </li>
+    <li>
+      <a href="/user/logout">
+        <span class="icon">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </span>
+        <span class="title">Sign Out</span>
+      </a>
+    </li>
+    <% } %>
+  </ul>
+</div>

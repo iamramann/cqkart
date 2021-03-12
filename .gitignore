@@ -1,0 +1,9 @@
+node_modules/
+*.min.*
+dump/
+other/
+dev.js
+ignore/
+.prettierignore
+media/
+.vscode/

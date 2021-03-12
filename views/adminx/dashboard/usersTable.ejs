@@ -1,0 +1,86 @@
+<h2 class="text-capitalize text-muted">Users</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr class="product-tbl">
+                  <th>no.</th>
+                  <th>name</th>
+                  <th>username</th>
+                  <th>email id</th>
+                  <th>dob</th>
+                  <th>phone</th>
+                  <th>avatar</th>
+                  <th>user id</th>
+                  <th>status</th>
+                  <th>action</th>
+                </tr>
+              </thead>
+            <%# create user details table start%>
+              <tbody>
+              <%# if-else start %> 
+                <% if (users.length) { %>      
+                  <%# for-each start %> 
+                  <% users.forEach((user,index)=> { %>
+                  <% let {avatar, status, name, username, email, phone, dob, userId, _id } = user%>
+                  <% if (status==="active") { %>
+                    <tr class="user-info">
+                      <td class="fw-bold"><%=index+1%></td>
+                      <td class="text-uppercase"><%=name===undefined ? "n/a" : name%></td>
+                      <td class="text-uppercase"><%=username===undefined ? "n/a" : username%></td>
+                      <td class="text-uppercase"><%=email===undefined ? "n/a" : email%></td>
+                      <%# <!-- TODO : add dob logic --> %>
+                      <td class="text-uppercase">dob</td>
+                      <td> <%=phone===undefined ? "n/a" : phone%> </td>
+                      <td>
+                        <%#<!--* no need to add image logic bcoz default image is always avaliable -->%>
+                        <a href="<%-avatar%>" target="_blank" id="user-img">click to view</a>
+                      </td>
+                      <td><%=userId%></td>
+                      <td class="text-uppercase fw-bold text-success" id="status">
+                        <%=status%>
+                      </td>
+                    <td class="delete" id="deleteUser">
+                        <a href="/deleteUser/<%-_id%>" class="text-decoration-none text-danger"
+                          id="delete-user"
+                          data-confirm="Are you sure to delete this user">
+                          Delete
+                          </a>
+                      </td>
+                    </tr>
+                  <% } else {%>
+                    <tr class="user-info disable-row" >
+                      <td class="fw-bold"><%=index+1%></td>
+                      <td class="text-uppercase"><%=name===undefined ? "n/a" : name%></td>
+                      <td class="text-uppercase"><%=username===undefined ? "n/a" : username%></td>
+                      <td class="text-uppercase"><%=email===undefined ? "n/a" : email%></td>
+                      <%# <!-- TODO : add dob logic --> %>
+                      <td class="text-uppercase">dob</td>
+                      <td> <%=phone===undefined ? "n/a" : phone%> </td>
+                      <td>
+                        <%#<!--* no need to add image logic bcoz default image is always avaliable -->%>
+                        <a class="text-muted text-decoration-none" href="<%-avatar%>" target="_blank">click to view</a>
+                      </td>
+                      <td><%=userId%></td>
+                      <td class="text-uppercase fw-bold">
+                        <%=status%>
+                      </td>
+        
+                      <td id="dlt-link">
+                        <a href="#" class="text-decoration-none text-muted"
+                          data-confirm="Are you sure to delete this user">
+                          Delete
+                          </a>
+                      </td>
+                    </tr>
+                  <%}%>
+                  <% })%>
+                <% } else { %>  
+                  <tr>
+                    <td colspan="10" class="text-muted h4 text-center text-capitalize"><%=message%></td>
+                  </tr>          
+                <% } %> 
+                  <%# if-else end %> 
+              </tbody>
+            <%# user details table end%>
+            </table>
+          </div>

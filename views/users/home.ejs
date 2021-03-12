@@ -1,0 +1,196 @@
+<%# 
+   * @author - RAMAN SHARMA
+   * @email: kukreti.rs@gmail.com
+   * @linkedin - https://www.linkedin.com/in/rashx358/
+   * @Modified - 2021-02-22 11:23:57
+%> 
+<% let {title, image, description, price, category, productId,discount} = details %>
+<% const discountRate = 30;%>
+<%# discount!==undefined?discount:null %> 
+<% discountedPrice =  discount !== undefined ?(price-Math.floor(( price/100)*discount)).toFixed(2) : null %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <%# bootstrap %>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <%# font awesome %>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <%# my css %> 
+    <link rel="stylesheet" href="/css/users/description.css" type="text/css">
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %> 
+    <div class="container w-75 bg-light my-3" id="product-desc">
+      <div class="row d-flex flex-column">
+        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+          <img src="<%-image%>" alt="<%=title%>" class="img-thumbnail" width="300px" height="300px"/>
+        </div>
+        <div class="row ">
+          <div class="col-sm-10 mx-auto my-3">
+              <p class="py-3 text-left h4"><%=title%></p>
+              <div class="row">
+                <p class="h5 text-uppercase text-dark">description</p>
+                <p class="text-justify fw-lighter text-muted text-sm-center text-lg-start text-md-center  fs-6" id="desc"><%=description%></p>
+              </div>
+              <%# 
+                 * @author - RAMAN SHARMA
+                 * @email: kukreti.rs@gmail.com
+                 * @linkedin - https://www.linkedin.com/in/rashx358/
+              %> 
+              <p id="price" class="fs-sm-1 fs-lg-4">
+                <span class="">Price: </span>
+                <% if(discountedPrice===null) { %> 
+                  <span class=" fw-bold text-success price">₹<%=price%></span>
+                  <% } else { %>
+                    <span class="text-decoration-line-through text-danger text-muted price">₹<%=price%></span>
+                    <span class="text-success fw-bold">₹<%=discountedPrice%>(<%=discount%>% discount)</span>
+                  <% } %> 
+              </p>
+
+              <p class="fw-bold" id="category">
+                Category: 
+                <span class="text-muted text-uppercase">
+                  <%=category?category:"not available"%>
+                </span>
+              </p>
+
+              <div class="row">
+              <% if(display) { %> 
+                <div class="col-lg-6 mt-2">
+                  <button class="btn btn-outline-warning text-capitalize w-100" 
+                  type="button" id="btn-cart" data-link="/user/addToCart/?productId=<%=productId%>">
+                  <i class="fa fa-shopping-cart fa-2x"></i> <span class="fs-4">add to cart</span> 
+                  </button>
+                  <a href="/user/userCart" class="btn btn-secondary d-none text-white fw-bold gotocart" >
+                    <span class="fs-4">
+                        Go to cart
+                    </span>
+                    &nbsp;<i class="fa fa-arrow-right"></i>
+                    </a>
+                    <!-- <button
+                      class="btn btn-primary d-none"
+                      type="button" 
+                      class="spinner"
+                      disabled
+                    >
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      Adding to Cart...
+                    </button> -->
+                </div>
+                <div class="col-lg-6 mt-2">
+                    <button class="btn btn-outline-primary text-capitalize w-100" type="button" id="btn-buy">
+                      <span class="fs-4">buy now</span> 
+                    </button>
+                </div>
+                <% } else { %> 
+                  <h1 class="text-muted h3">Please login to access this product</h1>
+                  <% } %> 
+                </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="container w-75 my-3 py-3 bg-light">
+      <div class="row">
+          <h1 class="text-muted h3 text-uppercase mt-3">Other similar items</h1>
+        <% simlarProducts.forEach((prod,i) => { %>
+          <%let { title, image, productId, description, quantity, price, category,discount }=prod %>
+          <% let discountedPricex = discount!==undefined? calculateDiscount(price,discount): null  %> 
+              <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
+                <div class="card p-3">
+                  <img
+                  src="<%=image%>"
+                  class="card-img-top rounded mx-auto d-block cursor-pointer"
+                  style="width: 10em;height: 10em;"
+
+                  alt="<%=title%>"
+                />
+                  <div class="card-body">
+                    <h5 class="card-title text-center fs-6" id="x"><%=title.substr(0,20)+"..."%></h5>
+                <p class="card-text text-center text-muted " style="font-size: 0.9rem;">
+                    <%=description.substr(0,60)+"..."%>
+                  </p>
+                  <p class="text-center fw-bold">
+                  <% if(discountedPricex===null) { %> 
+                    <span class=" fw-bold text-success price">₹<%=price%></span>
+                  <% } else { %>
+                    <span class="text-decoration-line-through text-danger text-muted price">₹<%=price.toFixed(2)%></span>
+                    <span class="text-success fw-bold">₹<%=discountedPricex.toFixed(2)%></span>
+                  <% } %>
+                  </p>
+                  <div class="d-grid gap-2">
+                    <a
+                      class="btn btn-outline-secondary text-capitalize view-desc"
+                      id="view-<%=productId%>"
+                      href="/user/viewDescription/?category=<%=category%>&id=<%=productId%>"
+                    >
+                      view description
+                    </a>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <% }) %> 
+        </div>
+    </div>
+
+    <%-include("../partials/changePwd.ejs")%>
+    <%-include("../partials/modal.ejs")%>
+    <%-include("../partials/footer.ejs") %> 
+    
+  </body>
+
+  <%#jquery cdn%>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+  <%# faker.js %> 
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js" integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw==" crossorigin="anonymous"></script> -->
+
+  <%# my js %> 
+  <script type="module" src="/script/users/description.js"></script>
+
+<script>
+  </script>
+
+
+  <% if(!display) { %> 
+    <script src="/script/components/loginForm.js"></script>
+    <script src="/script/components/modal.js"></script>
+    <script type="module" src="/script/components/signupForm.js"></script>
+    <% } %> 
+<%# 
+     * @author - RAMAN SHARMA
+     * @email: kukreti.rs@gmail.com
+     * @linkedin - https://www.linkedin.com/in/rashx358/
+%> 
+  <%# bootstrap js%>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+    integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+    integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+    crossorigin="anonymous"
+  ></script>
+</html>

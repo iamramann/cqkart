@@ -1,0 +1,112 @@
+@import url("../all.css");
+@import url("../components/footer.css");
+@import url("../components/header.css");
+@import url("../components/modal.css");
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.8;
+  text-decoration: none;
+}
+.alert {
+  padding: 20px;
+  background-color: #f8d7da;
+  /* color: white; */
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {
+  background-color: #4caf50;
+}
+.alert.info {
+  background-color: #2196f3;
+}
+.alert.warning {
+  background-color: #ff9800;
+}
+
+select {
+  cursor: pointer;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: var(--light-color-1);
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+#categories-sl {
+  display: none;
+}
+
+.view-desc {
+  background: var(--header-color-1);
+}
+
+input[type="search"],
+textarea,
+select,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  outline: none;
+  box-shadow: none !important;
+  border: 1px solid var(--border-light-1) !important;
+}
+
+.alert {
+  padding: 10px;
+}
+.alert-dismissible .btn-close {
+  padding: 1rem 1rem;
+}
+
+.alert-warning {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+}
+
+.product-img {
+  width: 220px;
+  height: 220px;
+}
+.margin-top-70 {
+  margin-top: 70px;
+}
+
+@media (min-width: 900px) and (max-width: 1100px) {
+  .w-100 {
+    max-width: 80%;
+  }
+}
+@media (min-width: 1101px) {
+  .w-100 {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 985px) {
+  #categories-sl {
+    display: block;
+  }
+
+  #categories-div {
+    display: none;
+  }
+}
