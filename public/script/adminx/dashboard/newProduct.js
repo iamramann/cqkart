@@ -196,6 +196,12 @@ $(document).ready(function () {
         setProductId($productId);
         // // todo: create a row in product table for newly added product
         const rowCount = $("#my-table tr").length;
+
+        /*
+         ! Fixme: when we add a product and display the added product by using manipulating DOM then the newly added product's edit btn won't work.
+         * the reason might be is when we add a product the event listener in productsTable doesn't attached to newly created element bcoz page is already  rendered.
+         */
+
         $myProductTable.append(
           `<tr class="disable-row-x">
                   <td class="fw-bold" aria-readonly="true">${rowCount}</td>
