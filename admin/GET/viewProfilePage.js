@@ -1,7 +1,6 @@
 const { adminModel } = require("../../models/export");
 module.exports = async function viewProfilePage(req, res) {
   let { username } = req.session;
-  // console.log(username);
   const filter = {
     username,
   };

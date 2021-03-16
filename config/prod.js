@@ -8,4 +8,6 @@ module.exports = {
   CLOUD_API_SECRET: process.env.CLOUD_API_SECRET,
   API_KEY: process.env.API_KEY,
   AUTH_KEY: process.env.AUTH_KEY,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
 };

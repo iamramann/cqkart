@@ -7,4 +7,5 @@ module.exports = {
   removeItemCart: require("./removeItemCart"),
   paymentHandler: require("./instamojo"),
   getUserSetting: require("./getUserSetting"),
+  getUserCart: require("./getUserCart"),
 };

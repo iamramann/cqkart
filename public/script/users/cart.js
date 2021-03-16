@@ -2,7 +2,23 @@ import "../components/header.js";
 $(document).ready(function (e) {
   const $msg = $(".msg");
   const $mainRow = $(".main-row");
+  // const $checkoutBtn = $("#checkout");
 
+  // var stripeHandler = StripeCheckout.configure({
+  //   key: StripePublicKey,
+  //   loacle: "en",
+  //   token: function (token) {},
+  // });
+
+  // // checkout section
+  // $checkoutBtn.click(function (e) {
+  //   // alert("Thanks");
+  //   let cartValue = $("#cart-value");
+  //   const price = Number(cartValue.text());
+  //   stripeHandler.open({
+  //     amount: price,
+  //   });
+  // });
   // remove product from the cart
   $(".delete").click(function (e) {
     let ele = $(this);
@@ -49,17 +65,19 @@ $(document).ready(function (e) {
       });
   });
 
-  //* ajax to update quanity
+  //* ajax to increment quanity
   $(".increment").click(function (e) {
     // // todo: update value on clicking  + btn
     let ele = $(this);
+    // productId;
     let productId = ele.attr("data-id");
-    // let type = "POST";
-    // let url = `/user/addToCart/?productId=${productId}`;
+    let type = "POST";
+    let url = `/user/addToCart/?productId=${productId}&flag=1`;
+    console.log(">>>  ~ file: cart.js ~ line 59 ~ url", url);
 
-    // ! Fixme: change url to add to cart
-    let type = "GET";
-    let url = "/states-and-districts"; //! temprory url
+    // // ! Fixme: change url to add to cart
+    // let type = "GET";
+    // let url = "/states-and-districts"; // // ! temprory url
     let quantityEle = ele
       .parent()
       .parent()
@@ -95,15 +113,16 @@ $(document).ready(function (e) {
   });
 
   // ajax to decrement quanity
+  //! Fixme#USER01: when a product is removed using - btn then some -ve value or invalid value displays
   $(".decrement").click(function (e) {
     // // todo: update value on clicking  + btn
     let ele = $(this);
     let productId = ele.attr("data-id");
-    // let type = "POST";
-    // let url = `/user/addToCart/?productId=${productId}`;
-    // ! Fixme: change url to add to cart
-    let type = "GET";
-    let url = "/states-and-districts"; //! temprory url
+    let type = "POST";
+    let url = `/user/addToCart/?productId=${productId}&flag=-1`;
+    // // ! Fixme: change url to add to cart
+    // let type = "GET";
+    // let url = "/states-and-districts"; // // ! temprory url
     let quantityEle = ele
       .parent()
       .parent()

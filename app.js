@@ -7,14 +7,13 @@ const session = require("express-session"),
   compression = require("compression"),
   cors = require("cors"),
   methodOverride = require("method-override"),
-  user = require("./user/route"),
   admin = require("./admin/route"),
+  user = require("./user/route"),
   { SESSION_SECRET_KEY, IS_SECURE } = require("./config/keys"),
   getAllCategories = require("./controllers/getAllCategories"),
   getRandomId = require("./controllers/getRandomId"),
   getstatesAndDistricts = require("./controllers/getstatesAndDistricts");
-// const Insta = require("instamojo-nodejs");
-// trust first proxy https://www.npmjs.com/package/express-session#cookiesecure
+
 app.set("trust proxy", 1);
 app.set("view engine", "ejs");
 
@@ -37,45 +36,84 @@ app.use(
     },
   })
 );
-
 app.use("/user", user);
 
 // GET
 app.get("/", user);
 app.get("/admin", admin);
-app.get("/dashboard/:category", admin);
-app.get("/logout", admin);
-
-app.get("/profile", admin);
-app.get("/forget", admin);
-// POST
-app.post("/signup", admin);
-app.post("/admin", admin);
-app.post("/newProduct", admin);
-
-app.patch("/updateProductDetails/:id", admin);
-// app.post("/updateProduct", admin); //* fallback
-
-app.patch("/updateAdmin/:id", admin);
-// app.post("/update", admin); //* fallback
-
-app.delete("/deleteProduct/:id", admin);
-// app.post("/deleteProduct", admin); //* fallback
-
-app.delete("/deleteUser/:id", admin);
-// app.get("/delete/user/:userId", admin); //* fallback
-
-app.get("/getProductDetails/:id", admin);
-//* fallback deleteProduct
-
-// app.post("/forget", admin);
-
-// end api's
-app.get("/getProductId", getRandomId);
+app.get("/dashboard", admin);
 app.get("/getCategories", getAllCategories);
+app.get("/forget", admin);
+app.post("/forget", admin);
+app.patch("/updateProductDetails/:id", admin);
+app.patch("/updateAdmin/:id", admin);
+app.delete("/deleteProduct/:id", admin);
+app.delete("/deleteUser/:id", admin);
+app.get("/getProductDetails/:id", admin);
+app.get("/getProductId", getRandomId);
 app.get("/states-and-districts", getstatesAndDistricts);
-// new route handler
 app.patch("/modifyUser/:id", admin);
 app.get("/getAdminDetails/:id", admin);
 app.get("/getUserDetails/:id", admin);
 app.post("/listNewProduct", admin);
+app.get("/logout", admin);
+app.get("/profile", admin);
+
+// POSTMAN
+app.post("/admin", admin);
+app.post("/signup", admin);
+app.post("/newProduct", admin);
+
+// 404 route
+app.get("*", function (req, res) {
+  res.sendFile(__dirname + "/views/404.html");
+});
+
+// app.post("/updateProduct", admin); //* fallback
+// app.post("/update", admin); //* fallback
+// app.post("/deleteProduct", admin); //* fallback
+// app.get("/delete/user/:userId", admin); //* fallback
+//* fallback deleteProduct
+
+// app.get("/test", (req, res) => {
+//   res.render("admin/login");
+// });
+
+// COMMENTS
+// app.get("/send", sendEmail, (req, res) => {
+//   res.send("!");
+// });
+// app.get("/dashboard/:category", admin);
+
+// app.post("/register", (req, res) => {
+//   adminModel.create(req.body, (err, data) => {
+//     if (err) {
+//       res.send(err);
+//     } else {
+//       let token = jwt.sign({ id: data._id }, "some secret", {
+//         expiresIn: 86400,
+//       });
+//       // res.setHeader();
+//       res.header("auth-token", token);
+//       res.status(200).send({ auth: true, token: token });
+//     }
+//   });
+// });
+
+// app.get("/me", function (req, res) {
+//   console.log(req.header);
+//   var token = req.header("auth-token");
+//   if (!token)
+//     return res.status(401).send({ auth: false, message: "No token provided." });
+
+//   jwt.verify(token, "some secret", function (err, decoded) {
+//     if (err)
+//       return res
+//         .status(500)
+//         .send({ auth: false, message: "Failed to authenticate token." });
+
+//     res.status(200).send(decoded);
+//   });
+// });
+
+// // POST

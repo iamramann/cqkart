@@ -4,7 +4,7 @@ module.exports = async function deleteUserHelper(req, res) {
   const { id } = req.params;
   const filter = { _id: id };
   const update = { status: "deleted" };
-  // console.log(filter);
+
   try {
     let response = isValidMongoId(id) ? await modifyUser(filter, update) : null;
     response !== null

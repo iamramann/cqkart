@@ -26,47 +26,51 @@
 <% let totalCartValue = calculteTotalAmount(cartItems) %> 
 <body class="bg-light">
     <%- include("../partials/header.ejs") %> 
-  <div class="container w-75"> 
+  <div class="container w-75" id="main-cntr"> 
     <div class="col-12 my-2 d-flex justify-content-between p-3 align-items-center" style="background-color:#fff">
+      <%#  <!--!  Fixme#USER01: when a product is removed using - btn then some -ve value or invalid value displays--> %> 
         <p  class="h5 fs-1-1">Total cart value : ₹<span id="cart-value"><%=totalCartValue%></span> </p>
         <button class="btn btn-outline-secondary w-50" id="checkout">Checkout</button>
       </div>
-    <div class="row main-row">
+    <div class="row main-row" id="main-row">
       <% if(cartItems.length) { %>
         <% cartItems.forEach((product,index) => { %>
           <% let { title, image, productId, description, quantity, price, category,discount } = product %>
-          <% let discountedPrice = ( discount === undefined || discount===null) ?null :calculateDiscount(price,discount)%>
-    
-            <div class="col-sm-12 col-md-6 col-lg-4 mb-4 my-col">
-            <div class="cursor-pointer card-item-cs m-1" id="card-bs">
-              <div class="card  rounded shadow-cs">
-                <div class="card-body">
-                  <h5 class="card-title text-center fs-5" id="x"><%=title.substr(0,20)+"..."%></h5>
-                  <p class="card-text text-center text-muted fs-9">
-                    <%=description.substr(0,80)+"..."%>
+          <% if(quantity > 0) { %> 
+            <% let discountedPrice = ( discount === undefined || discount===null) ?null :calculateDiscount(price,discount)%>
+              <div class="col-sm-12 col-md-6 col-lg-4 mb-4 my-col">
+              <div class="cursor-pointer card-item-cs m-1" id="card-bs">
+                <div class="card  rounded shadow-cs">
+                  <div class="card-body">
+                    <h5 class="card-title text-center fs-5" id="x"><%=title.substr(0,20)+"..."%></h5>
+                    <p class="card-text text-center text-muted fs-9">
+                      <%=description.substr(0,80)+"..."%>
+                    </p>
+                    <p class="text-center fw-bold price-section">
+                      <span class="">Price:₹ </span>
+                    <% if(discountedPrice===null){ %> 
+                    <span class=" fw-bold text-success price my-price"><%=price%></span>
+                    <% }else{ %>
+                      <span class="text-decoration-line-through text-danger text-muted price"><%=price%></span>
+                      <span class="text-success fw-bold my-price"><%=discountedPrice%></span>
+                    <% } %> 
                   </p>
-                  <p class="text-center fw-bold price-section">
-                    <span class="">Price:₹ </span>
-                  <% if(discountedPrice===null){ %> 
-                  <span class=" fw-bold text-success price my-price"><%=price%></span>
-                  <% }else{ %>
-                    <span class="text-decoration-line-through text-danger text-muted price"><%=price%></span>
-                    <span class="text-success fw-bold my-price"><%=discountedPrice%></span>
-                  <% } %> 
-                </p>
-                <div class="d-flex justify-content-evenly m-3 my-qty">
-                    <button class="btn btn-primary w-25 br-0 increment" data-id="<%-productId%>" >+</button>
-                    <p class="d-flex justify-content-center align-content-center qty-section"><%= quantity %> </p>
-                    <button class="btn btn-secondary w-25 br-0 decrement" data-id="<%-productId%>" >-</button>
+                  <div class="d-flex justify-content-evenly m-3 my-qty">
+                      <button class="btn btn-primary w-25 br-0 increment" data-id="<%-productId%>" >+</button>
+                      <p class="d-flex justify-content-center align-content-center qty-section"><%= quantity %> </p>
+                      <button class="btn btn-secondary w-25 br-0 decrement" data-id="<%-productId%>" >-</button>
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                      <button class="btn btn-danger delete w-100" data-id="<%-productId %>">Remove from cart&nbsp;<i class="fa fa-trash"></i></button>
+                    </div>
                   </div>
-                  <div class="d-flex justify-content-evenly">
-                    <button class="btn btn-danger delete w-100" data-id="<%-productId %>">Remove from cart&nbsp;<i class="fa fa-trash"></i></button>
-                  </div>
-                  
                 </div>
               </div>
-            </div>
-      </div>
+        </div>
+            
+            
+            <% } %> 
+          
           <%})%> 
       <%} else {%>
             <h1 class="text-muted">No products in the cart...</h1>
@@ -75,19 +79,79 @@
     </div>  
   </div>
 </body>
-  <%# jquery cdn%>
-  <script src="https://js.instamojo.com/v1/checkout.js"></script>
+  
 
-  <script
+  <%# stripe  %> 
+      <script src="https://checkout.stripe.com/checkout.js"></script>
+      <!-- <script src="https://js.stripe.com/v3/"></script> -->
+<%# jquery cdn%>
+
+
+    <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
     crossorigin="anonymous"
   ></script>
-  <script type="module" src="/script/users/cart.js"></script>
+
+  <%# instamojo  %> 
+  <!-- <script src="https://js.instamojo.com/v1/checkout.js"></script> -->
+
 
 
   <script>
+    const stripePublicKey = '<%-stripePublicKey%>';
+    const $checkoutBtn = $("#checkout");
+
+  var stripeHandler = StripeCheckout.configure({
+    key: stripePublicKey,
+    locale: "en",
+    token: function (token) {
+    let cartValue = $("#cart-value");
+    const total = Number(cartValue.text());
+      console.log(token);
+      $.ajax({
+        type:"POST",
+        url:"/user/payment",
+        data:JSON.stringify({total:total,stripeTokenId:token.id,email:"kukreti.rs@gmail.com",name:"RAMAN SHARMA"}),
+        contentType:"application/json", 
+      }).done((data)=>{
+        alert(data);
+        $("#main-row").remove();
+        $("#main-cntr").append(
+          `<div>
+            <h1 class="text-muted">No products in the cart...</h1>
+            </div>
+            `
+        );
+          $("#cart-value").text("0.00");
+      }).fail((xhr,statusText)=>{
+        console.log("here");
+        console.log(statusText);
+      })
+        },
+      });
+
+  // checkout section
+  $checkoutBtn.click(function (e) {
+    let total=0;
+    let cartValue = $("#cart-value");
+    const price = Number(cartValue.text());
+    <%cartItems.forEach((item)=>{%>
+      console.log("<%-item.price-item.price/100*item.discount%>");
+      total+=<%-item.price-item.price/100*item.discount%>;
+    <%})%>
+    stripeHandler.open({
+      amount: price*100,
+      currency: 'inr',
+ 
+    });
+  });
   </script>
+
+  <script type="module" src="/script/users/cart.js"></script>
+
+
+
 
   <% if(!display) { %> 
   <script src="/script/components/loginForm.js"></script>
@@ -98,9 +162,7 @@
   <% if (display) { %>
   <script src="/script/components/pwdModal.js"></script>
   <% } %>
-<script>
  
-</script>
   <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
     integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"

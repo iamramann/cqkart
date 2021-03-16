@@ -3,7 +3,6 @@ const { userModel } = require("../../models/export");
 const findUser = require("../controllers/user/findUser");
 module.exports = async function paymentHandler(req, res) {
   let { username } = req.session;
-  // let { username } = req.query;
   let userFilter = { email: username };
   try {
     let user = await findUser(userFilter);

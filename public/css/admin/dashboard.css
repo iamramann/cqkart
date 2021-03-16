@@ -18,6 +18,9 @@ tr.product-tbl > th {
 td.delete:hover {
   text-decoration: underline;
 }
+input::placeholder {
+  text-transform: capitalize;
+}
 
 .disable-row {
   opacity: 0.9;

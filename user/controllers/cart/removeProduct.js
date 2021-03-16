@@ -1,5 +1,6 @@
 const { userModel } = require("../../../models/export");
 module.exports = async function updataUser(filter, productId) {
+  console.log("here");
   let query = userModel.updateOne(
     filter,
     {
@@ -9,6 +10,7 @@ module.exports = async function updataUser(filter, productId) {
   );
   try {
     let response = await query.exec();
+    console.log(response);
     return response;
   } catch (error) {
     throw error;

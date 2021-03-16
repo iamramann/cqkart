@@ -28,6 +28,7 @@ document.addEventListener("keydown", function (e) {
 openLoginModel.addEventListener("click", function (e) {
   e.preventDefault();
   modelOpenBtn.click();
+  // $("#username").focus();
 });
 
 loginBtn.addEventListener("click", (e) => {

@@ -6,7 +6,7 @@ const updateAdmin = require("../controllers/updateAdmin");
 const isValidMongoId = require("../controllers/isValidMongoId");
 module.exports = async function updateAdminHelper(req, res) {
   const { id } = req.params;
-  console.log(id);
+
   if (isValidMongoId(id)) {
     uploader(req, res, async (err) => {
       const filter = { _id: id };

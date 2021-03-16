@@ -8,6 +8,7 @@ const closeSignupModal = document.querySelector("#close-signup-modal");
 alreadyAUser.addEventListener("click", (e) => {
   closeSignupModal.click();
   element1.click();
+  // $("#username").focus();
 });
 
 newUserClick.addEventListener("click", (e) => {

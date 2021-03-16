@@ -37,6 +37,7 @@ $editProduct.each(function (index) {
   });
 });
 
+//! Fixme: error while updating product when discount is "NA"
 // update product btn
 $updateProduct.each(function (index) {
   const ele = $(this);
@@ -130,7 +131,7 @@ $updateProduct.each(function (index) {
 
     const message = ele.attr("data-confirm");
     const choice = window.confirm(message);
-    // console.log(flag);
+    console.log(url);
     if (choice && flag) {
       // ajax to update the product
       $.ajax({

@@ -15,12 +15,12 @@ if (window.innerWidth <= width1) {
   form.classList.add("p-0");
 }
 
-window.addEventListener("resize", (e) => {
-  if (this.innerWidth <= width1) {
-    form.classList.remove("p-5");
-    form.classList.add("p-1");
-  }
-});
+// window.addEventListener("resize", (e) => {
+//   if (this.innerWidth <= width1) {
+//     form.classList.remove("p-5");
+//     form.classList.add("p-1");
+//   }
+// });
 
 function toggleSubmitBtn(status) {
   $submitBtn.attr("disabled", status);
@@ -39,17 +39,17 @@ $passwordField.keyup((e) => {
   toggleSubmitBtn(status);
 });
 
-$loginEyeIcon.click(() => {
-  const faEye = "fa-eye";
-  const faEyeSlash = "fa-eye-slash";
-  if ($loginEyeIcon.hasClass(faEye)) {
-    $loginEyeIcon.removeClass(faEye).addClass(faEyeSlash);
-    $passwordField.attr("type", "text");
-  } else if ($loginEyeIcon.hasClass(faEyeSlash)) {
-    $loginEyeIcon.removeClass(faEyeSlash).addClass(faEye);
-    $passwordField.attr("type", "password");
-  }
-});
+// $loginEyeIcon.click(() => {
+//   const faEye = "fa-eye";
+//   const faEyeSlash = "fa-eye-slash";
+//   if ($loginEyeIcon.hasClass(faEye)) {
+//     $loginEyeIcon.removeClass(faEye).addClass(faEyeSlash);
+//     $passwordField.attr("type", "text");
+//   } else if ($loginEyeIcon.hasClass(faEyeSlash)) {
+//     $loginEyeIcon.removeClass(faEyeSlash).addClass(faEye);
+//     $passwordField.attr("type", "password");
+//   }
+// });
 
 $submitBtn.click((e) => {
   $submitBtn.css({ display: "none" });

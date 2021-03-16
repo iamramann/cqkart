@@ -17,11 +17,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/css/admin/dashboard.css" type="text/css" />
-    <style>
-      input::placeholder{
-        text-transform: capitalize;
-      }
-    </style>
   </head>
 
   <body>
@@ -104,14 +99,21 @@
           </div>
         </nav>
 
+        
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <%# user details table%> <%-include("./dashboard/usersTable.ejs") %>
-          <%# product table start%> <%-include("./dashboard/productsTable.ejs")%>
-          <%# new product form %> <%-include("./dashboard/productForm.ejs")%>
+
+          <%# user details table%> 
+          <%-include("./dashboard/usersTable.ejs") %>
+
+          <%# product table start%> 
+          <%-include("./dashboard/productsTable.ejs")%>
+          
+          <%# new product form %> 
+          <%-include("./dashboard/productForm.ejs")%>
+
         </main>
       </div>
     </div>
-
     <%-include("../partials/footer.ejs") %>
 
     <script
@@ -121,7 +123,6 @@
     ></script>
     <%# faker js %> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js" integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw==" crossorigin="anonymous"></script>
-
     <script type="module" src="/script/adminx/dashboard.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
     <script

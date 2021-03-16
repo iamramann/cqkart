@@ -70,7 +70,6 @@ $(document).ready(function () {
 
   $discount.keyup(function (e) {
     const val = Number(e.target.value);
-    // console.log(val);
     if (isNaN(val) || val < 0 || val > 100) {
       $discountError.text(`(${$discountMsg})`);
       $discountError.removeClass("d-none");
@@ -198,7 +197,7 @@ $(document).ready(function () {
         const rowCount = $("#my-table tr").length;
 
         /*
-         ! Fixme: when we add a product and display the added product by using manipulating DOM then the newly added product's edit btn won't work.
+        ! Fixme: when we add a product and display the added product by using manipulating DOM then the newly added product's edit btn won't work.
          * the reason might be is when we add a product the event listener in productsTable doesn't attached to newly created element bcoz page is already  rendered.
          */
 

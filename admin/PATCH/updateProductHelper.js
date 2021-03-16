@@ -2,7 +2,6 @@ const isValidMongoId = require("../controllers/isValidMongoId");
 const updateProduct = require("../controllers/updateProduct");
 const findProduct = require("../controllers/findProduct");
 module.exports = async function updateProductHelper(req, res) {
-  // console.log(req.validationError);
   const { id } = req.params;
   const filter = { _id: id };
   let product;
@@ -16,7 +15,7 @@ module.exports = async function updateProductHelper(req, res) {
       product = isValidMongoId(id)
         ? await updateProduct(filter, req.body)
         : null;
-      console.log(product);
+
       product !== null
         ? res.status(200).json({
             msg: "Product updated successfully",
@@ -29,7 +28,6 @@ module.exports = async function updateProductHelper(req, res) {
       res.status(500).json({ msg: "Internal server error" });
     }
   }
-  // console.log(filter);
 };
 /*
   if (isValidMongoId(id)) {

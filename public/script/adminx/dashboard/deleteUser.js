@@ -1,4 +1,13 @@
 const $deleteUser = $("#delete-user");
+const snackbar = $("#snackbar");
+// function myFunction() {
+//   var x = document.getElementById("snackbar");
+//   x.className = "show";
+//   setTimeout(function () {
+//     x.className = x.className.replace("show", "");
+//   }, 3000);
+// }
+
 // ajax to change user status to delete
 $deleteUser.click(function (e) {
   e.preventDefault();

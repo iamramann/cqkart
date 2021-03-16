@@ -8,8 +8,13 @@
     type="search"
     placeholder="Search Products...."
     aria-label="Search"
+    onfocus="this.value=''"
     id="search-bar"
   />
+
+  <script>
+    document.getElementById("search-bar").innerText("")
+  </script>
   <div class="toggle navbar-nav" id="bars"></div>
 </header>
 <div class="navigation shadow" id="abc" style="z-index: 1">

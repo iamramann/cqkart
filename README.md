@@ -2,13 +2,13 @@
 
 My ecommerce store project using Nodejs, MongoDB, express and ejs.
 
-check deployment 🚀 here [CQKart-ecommerce](https://cqkart-ecomm.herokuapp.com/)
+check deployment 🚀 here [CQKart-ecommerce](https://cqkartecomm.herokuapp.com/)
 
 # PROJECT SECTIONS
 
 This project contains two sections one is for **`ADMIN`** and the other one is for **`USER`**.
 
-## [ADMIN SECTION 🔗](https://cqkart-ecomm.herokuapp.com/admin)
+## [ADMIN SECTION 🔗](https://cqkartecomm.herokuapp.com/admin)
 
 #### FUNCTIONALITIES
 
@@ -26,13 +26,13 @@ This project contains two sections one is for **`ADMIN`** and the other one is f
 
 #### **VIEWS**
 
-- _`Login Page`_ - can be accessed via `/admin` route displays admin login form which admin can use to [login.](https://cqkart-ecomm.herokuapp.com/admin)
+- _`Login Page`_ - can be accessed via `/admin` route displays admin login form which admin can use to [login.](https://cqkartecomm.herokuapp.com/admin)
 
-- _`Dashbard`_ - if user manages to login successfully then `/dashboard/All` can be used to view the [admin dashboard](https://cqkart-ecomm.herokuapp.com/dashboard/All).
+- _`Dashbard`_ - if user manages to login successfully then `/dashboard/All` can be used to view the [admin dashboard](https://cqkartecomm.herokuapp.com/dashboard/All).
 
-- _`Profile Page`_ - can be accessed via `/profile` contains [all the details](https://cqkart-ecomm.herokuapp.com/profile) of the admin and as we said earlier admin can update its `details` including its `avatar`.
+- _`Profile Page`_ - can be accessed via `/profile` contains [all the details](https://cqkartecomm.herokuapp.com/profile) of the admin and as we said earlier admin can update its `details` including its `avatar`.
 
-## [USER SECTION 🔗](https://cqkart-ecomm.herokuapp.com)
+## [USER SECTION 🔗](https://cqkartecomm.herokuapp.com/)
 
 #### FUNCTIONALITIES
 

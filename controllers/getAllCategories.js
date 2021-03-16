@@ -1,5 +1,5 @@
 const { productModel } = require("../models/export");
-module.exports = function getCategories(req, res) {
+module.exports = function getAllCategories(req, res) {
   try {
     productModel.find({}, (err, products) => {
       if (err) {

@@ -159,11 +159,15 @@ $(document).ready(function (e) {
         url: url,
       })
         .done((data) => {
-          // todo1: handle what to do after user deleted profile
+          // // todo1: handle what to do after user deleted profile
           alert("Profile deleted successfully");
+          let protocol = window.location.protocol;
+          let host = window.location.host;
+          let path = "user";
+          window.open(`/${path}`, "_self");
         })
         .fail((xhr, textStatus) => {
-          // todo2: handle what to do if request fails
+          // // todo2: handle what to do if request fails
           alert("something went wrong please try again later");
         });
     }

@@ -1,0 +1,47 @@
+<div class="container w-50 shadow-sm py-3" style="height: auto">
+  <div class="row   d-flex justify-content-center">
+    <div class="col-lg-9 col-md-12 col-sm-12 ">
+      <p class="text-center text-muted p-1 fs-2">Welcome Back!</p>
+      <form class="mx-2 px-1" method="POST" action="/admin" id="form">
+        <div class="input-group mb-3">
+          <div class="row w-100">
+              <input type="text" class="form-control cs-input <%- message !== null
+              && warningText === "USER_DNE" ? "border-danger" : "border-normal"%>"
+              name="username" value="" id="username" placeholder="Enter Your email*" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default" required />
+          </div>
+        </div>
+  
+        <div class="input-group mb-3">
+          <div class="row w-100">
+            <input type="password" id="password" name="password"
+            class="form-control cs-input <%- message !== null && warningText ===
+            "PASS_INVALID" ? "border-danger" : "border-normal"%>" value=""
+            class="form-control password-parent" placeholder="Enter Your password*" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" required />
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="row w-100 gap-2">
+            <input class="btn btn-user mx-1 w-100" value="Submit" type="submit" id="loginBtn" />
+            <button class="btn btn-primary cs-input w-100 mx-1 display-none" id="login-spinner" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp;Validating details...
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- // todo: forgot password functionality -->
+      <div class="gap-2">
+        <a
+          href="/forget"
+          value="Submit"
+          type="submit"
+          class="text-right"
+          id="loginBtn"
+        >
+          Forget Password?
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
