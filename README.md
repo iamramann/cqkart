@@ -28,7 +28,7 @@ This project contains two sections one is for **`ADMIN`** and the other one is f
 
 - _`Login Page`_ - can be accessed via `/admin` route displays admin login form which admin can use to [login.](https://cqkart-ecomm.herokuapp.com/admin)
 
-- _`Dashbard`_ - if user manages to login successfully then `/dashboard/All` can be used to view the [admin dashboard](https://cqkart-ecomm.herokuapp.com/dashboard/All).
+- _`Dashbard`_ - if user manages to login successfully then `/dashboard` can be used to view the [admin dashboard](https://cqkart-ecomm.herokuapp.com/dashboard).
 
 - _`Profile Page`_ - can be accessed via `/profile` contains [all the details](https://cqkart-ecomm.herokuapp.com/profile) of the admin and as we said earlier admin can update its `details` including its `avatar`.
 
