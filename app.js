@@ -69,6 +69,11 @@ app.get("*", function (req, res) {
   res.sendFile(__dirname + "/views/404.html");
 });
 
+
+app.get("/contact", function (req, res) {
+  res.sendFile(__dirname + "/views/contact.html");
+});
+
 // app.post("/updateProduct", admin); //* fallback
 // app.post("/update", admin); //* fallback
 // app.post("/deleteProduct", admin); //* fallback
